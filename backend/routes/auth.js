@@ -6,7 +6,7 @@ router.post("/register", async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const [user] = await db.execute(
+        await db.execute(
             "INSERT INTO users (username, password) VALUES (?, ?)",
             [username, password]
         );
