@@ -11,20 +11,31 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+      # Obtenir el codi del repositori
       - name: Checkout code repository
         uses: actions/checkout@v4
 
+      # Configurar la versió de Node.js per executar les comandes
       - name: Use Node.js
         uses: actions/setup-node@v4
 
+      # Instal·lar totes les dependències definides al package.json
       - name: Install dependencies
         run: npm install
 
+      # Executar ESLint per analitzar la qualitat i estil del codi
       - name: Lint code with ESLint
         run: npm run lint
         
+      # Executar els tests automàtics definits al projecte
       - name: Run tests
         run: npm run test:run
 
+      # Construir el projecte per assegurar que la compilació és correcta
       - name: Build project
         run: npm run build
+
+      # Mostrar missatge si algun pas anterior falla
+      - name: Notify on failure
+        if: failure()
+        run: echo "❌ Workflow failed. Please review the steps above for errors."
