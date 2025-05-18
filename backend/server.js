@@ -11,4 +11,8 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 
+app.get("/api/fake", (req, res) => {
+  res.json({ message: "Aquest és un endpoint de prova" });
+});
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
