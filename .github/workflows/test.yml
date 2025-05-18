@@ -1,3 +1,4 @@
+# Aquest workflow executa lint, build i test en cada push
 name: test
 
 on:
